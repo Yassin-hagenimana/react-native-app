@@ -1,8 +1,9 @@
 import React from 'react';
-import {TouchableOpacity,SafeAreaView, StyleSheet, View,Text, TextInput, TouchableOpacityBase } from 'react-native';
+import {TouchableOpacity,SafeAreaView, StyleSheet, View,Text, TextInput, TouchableOpacityBase, ScrollView } from 'react-native';
 
 function Login() {
     return (
+        <ScrollView>
         <SafeAreaView style={styles.container}>
             <Text style={styles.loginHeader}>Login Form</Text>
             <View  style={styles.form}>
@@ -18,6 +19,7 @@ function Login() {
                 
                 </TouchableOpacity>
         </SafeAreaView>
+        </ScrollView>
     );
 }
 
@@ -26,7 +28,8 @@ export default Login;
 const styles=StyleSheet.create({
     container:{
         matginTop:100,
-        backgroundColor:"#ffffff"
+        backgroundColor:"#ffffff",
+        margin:10
     },
     loginHeader:{
         textAlign:"center",
