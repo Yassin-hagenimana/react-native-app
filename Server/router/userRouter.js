@@ -8,7 +8,7 @@ const userRouter=express.Router()
 
 userRouter.post("/register",
 expressAsyncHandler(async(req,res)=>{
-    const foundUser= await User.findById({email:req.body.email})
+    const foundUser= await User.find({email:req.body.email})
     if(foundUser.length>0)
     res.status(403).send({massage:"User with email already exists."})
     

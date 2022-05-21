@@ -7,7 +7,7 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
-      <Navigator/>
+          <Navigator/>
       </NavigationContainer>
     </SafeAreaView>
   );

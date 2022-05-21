@@ -1,7 +1,8 @@
 import React from "react"
-import { Alert,TouchableOpacity, SafeAreaView, View, StyleSheet, Text, TextInput } from "react-native";
+import {Alert,TouchableOpacity, SafeAreaView, View, StyleSheet,ToastAndroid, Text, TextInput } from "react-native";
 import { useFormik } from "formik";
 import axios from "axios"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function Register({ navigation }) {
 
   const{handleSubmit,handleChange,values}=useFormik({
@@ -36,11 +37,11 @@ export default function Register({ navigation }) {
           phoneNumber:values.phoneNumber,
           password:values.password
         })
-        Alert.alert("Success","User registered successfully")
-        console.log("Result:"+result)
+        ToastAndroid.show("User registered successfully",ToastAndroid.SHORT)
+       await AsyncStorage.setItem("userInfo",JSON.stringify(result.data))
       }catch(err){
-       Alert.alert("Error","Something Went Wrong")
-       console.log(err.response.data)
+       ToastAndroid.show("Something Went Wrong",ToastAndroid.SHORT)
+       
       }
     }
   })
