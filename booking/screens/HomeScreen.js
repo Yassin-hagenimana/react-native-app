@@ -5,12 +5,12 @@ function HomeScreen({navigation}) {
     return (
        <SafeAreaView >
            <View>
-        <NavBar>
+        <NavBar style={styles.navBar}>
         <NavTitle>
          <Text style={styles.title}>Yassin</Text>
         </NavTitle>
-        <NavGroup >
-          <NavButton>
+        <NavGroup  >
+          <NavButton onPress={()=>navigation.navigate("Register")}>
             <NavButtonText >
               <Text >Register</Text>
             </NavButtonText>
@@ -47,13 +47,10 @@ const styles=StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: '#f5f5f5',
         paddingLeft: 8,
         paddingRight: 8,
       },
-      navbar:{
-          backgroundColor:"gold",
-      },
+  
       title:{
           color:"#000",
       }

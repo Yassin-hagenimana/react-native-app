@@ -1,7 +1,6 @@
 import React from "react"
 import {TouchableOpacity,SafeAreaView,View,StyleSheet,Text, TextInput} from "react-native";
-import { createStackNavigator, createAppContainer } from 'react-navigation-stack';
-export default function Register() {
+export default function Register({navigation}) {
   return (
     <SafeAreaView style={styles.container}>
                  <Text style={styles.register}>Register Form</Text>
@@ -14,7 +13,7 @@ export default function Register() {
          <TextInput placeholder="Country" style={styles.textInput}/>
          </View>
 
-<TouchableOpacity>
+<TouchableOpacity onPress={()=>navigation.navigate("Home")}>
     <View style={styles.registerButton}>
      <Text style={styles.registerText}>Register</Text>
     </View>
