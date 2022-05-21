@@ -1,13 +1,42 @@
 import React from 'react';
 import { useFormik } from "formik";
-import {TouchableOpacity,SafeAreaView, StyleSheet, View,Text, TextInput, ScrollView
- } from 'react-native';
+import {TouchableOpacity,SafeAreaView, StyleSheet, View,Text,
+     TextInput,
+     ScrollView,
+     ToastAndroid,
+     Alert
+} from 'react-native';
+import axios from 'axios';
+import * as SecureStore from "expo-secure-store";
+import { AuthContext } from "../hooks/authContext";
 function Login({navigation}) {
-
+    const setIsLoggedIn = react.useContext(AuthContext).setIsLoggedIn;
     const {handleSubmit,handleChange,values}=useFormik({
         initialValues:{
           email:"",
           password:""  
+        },
+        onSubmit:async(values)=>{
+           if(!values.email || !values.password){
+            Alert.alert("Error","Email and Password are required")  
+            return;
+           }
+
+           try {
+               const response=await axios.post("http://192.168.8.103:8000/api/user/signin",{
+                   email:values.email,
+                   password:values.password
+               })
+               ToastAndroid.show("User Logged in successfully",ToastAndroid.SHORT)
+
+            const data = await response.json();
+            if (data.token) {
+               await SecureStore.setItemAsync("token", data.token);
+           setIsLoggedIn(true);
+      }
+           } catch (error) {
+            ToastAndroid.show("Something Went Wrong",ToastAndroid.SHORT)
+           }
         }
     })
 
@@ -16,11 +45,18 @@ function Login({navigation}) {
         <SafeAreaView style={styles.container}>
             <Text style={styles.loginHeader}>Login Form</Text>
             <View  style={styles.form}>
-          <TextInput placeholder='Username' style={styles.textInput}/>
-          <TextInput placeholder='Email' style={styles.textInput}/>
-          <TextInput secureTextEntry={true} placeholder='Password' style={styles.textInput}/>
+          <TextInput placeholder='Email' style={styles.textInput}
+          onChangeText={handleChange("email")}
+          />
+          <TextInput secureTextEntry={true} placeholder='Password' style={styles.textInput}
+             onChangeText={handleChange("password")}
+          />
             </View>
-                <TouchableOpacity onPress={()=>navigation.navigate("Register")}>
+                <TouchableOpacity onPress={()=>{
+                    handleSubmit()
+                    navigation.navigate("Register")
+                    
+                    }}>
                     <View style={styles.LoginButton}>
                     <Text style={styles.loginText}>Login</Text>
                     </View>
