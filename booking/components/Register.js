@@ -1,6 +1,6 @@
 import React from "react"
-import {TouchableOpacity,SafeAreaView,View,StyleSheet,Text, TextInput, Button, TouchableOpacityBase } from "react-native";
-
+import {TouchableOpacity,SafeAreaView,View,StyleSheet,Text, TextInput} from "react-native";
+import { createStackNavigator, createAppContainer } from 'react-navigation-stack';
 export default function Register() {
   return (
     <SafeAreaView style={styles.container}>
@@ -15,11 +15,11 @@ export default function Register() {
          </View>
 
 <TouchableOpacity>
-  <View style={styles.registerButton}>
-    <Text style={styles.registerText}>Register</Text>
-  </View>
+    <View style={styles.registerButton}>
+     <Text style={styles.registerText}>Register</Text>
+    </View>
 </TouchableOpacity>
-    </SafeAreaView>
+</SafeAreaView>
   );
 }
 

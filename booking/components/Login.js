@@ -1,7 +1,6 @@
 import React from 'react';
 import {TouchableOpacity,SafeAreaView, StyleSheet, View,Text, TextInput, TouchableOpacityBase, ScrollView } from 'react-native';
-
-function Login() {
+function Login({navigation}) {
     return (
         <ScrollView>
         <SafeAreaView style={styles.container}>
@@ -11,8 +10,7 @@ function Login() {
           <TextInput placeholder='Email' style={styles.textInput}/>
           <TextInput secureTextEntry={true} placeholder='Password' style={styles.textInput}/>
             </View>
-
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>navigation.navigate("Register")}>
                     <View style={styles.LoginButton}>
                     <Text style={styles.loginText}>Login</Text>
                     </View>
