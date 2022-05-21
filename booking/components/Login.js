@@ -1,6 +1,16 @@
 import React from 'react';
-import {TouchableOpacity,SafeAreaView, StyleSheet, View,Text, TextInput, TouchableOpacityBase, ScrollView } from 'react-native';
+import { useFormik } from "formik";
+import {TouchableOpacity,SafeAreaView, StyleSheet, View,Text, TextInput, ScrollView
+ } from 'react-native';
 function Login({navigation}) {
+
+    const {handleSubmit,handleChange,values}=useFormik({
+        initialValues:{
+          email:"",
+          password:""  
+        }
+    })
+
     return (
         <ScrollView>
         <SafeAreaView style={styles.container}>
