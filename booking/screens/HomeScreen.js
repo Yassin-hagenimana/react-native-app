@@ -34,7 +34,7 @@ const styles=StyleSheet.create({
     header:{
         textAlign:"center",
         fontSize:35,
-        color:"gold",
+        color:"tomato",
         marginTop:100
     },
       navBarContainer: {

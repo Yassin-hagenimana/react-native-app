@@ -33,7 +33,7 @@ const styles=StyleSheet.create({
         textAlign:"center",
         fontSize:24,
         marginTop:100,
-        color:"gold"
+        color:"tomato"
     },
     form:{
         marginLeft:50,
@@ -51,7 +51,7 @@ const styles=StyleSheet.create({
     fontSize:16
     },
     LoginButton:{
-        backgroundColor:"gold",
+        backgroundColor:"tomato",
         width:380,
         marginLeft:60,
         marginTop:30,
