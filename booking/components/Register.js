@@ -25,10 +25,12 @@ export default function Register({ navigation }) {
         !values.password
       ){
        Alert.alert("Error","Fields are required")
+       navigation.navigate("Register")
        return;
       }
 
       try{
+        console.log(values)
         const result=await axios.post("http://192.168.8.103:8000/api/user/register",{
           name:values.name,
           country:values.country,
@@ -38,10 +40,11 @@ export default function Register({ navigation }) {
           password:values.password
         })
         ToastAndroid.show("User registered successfully",ToastAndroid.SHORT)
+        navigation.navigate("Login")
        await AsyncStorage.setItem("userInfo",JSON.stringify(result.data))
       }catch(err){
        ToastAndroid.show("Something Went Wrong",ToastAndroid.SHORT)
-       
+       navigation.navigate("Register")
       }
     }
   })

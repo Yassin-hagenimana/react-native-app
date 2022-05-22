@@ -8,9 +8,7 @@ import {TouchableOpacity,SafeAreaView, StyleSheet, View,Text,
 } from 'react-native';
 import axios from 'axios';
 import * as SecureStore from "expo-secure-store";
-import { AuthContext } from "../hooks/authContext";
 function Login({navigation}) {
-    const setIsLoggedIn = react.useContext(AuthContext).setIsLoggedIn;
     const {handleSubmit,handleChange,values}=useFormik({
         initialValues:{
           email:"",
@@ -18,7 +16,8 @@ function Login({navigation}) {
         },
         onSubmit:async(values)=>{
            if(!values.email || !values.password){
-            Alert.alert("Error","Email and Password are required")  
+            Alert.alert("Error","Email and Password are required")
+            navigation.navigate("Login")  
             return;
            }
 
@@ -28,15 +27,17 @@ function Login({navigation}) {
                    password:values.password
                })
                ToastAndroid.show("User Logged in successfully",ToastAndroid.SHORT)
+               navigation.navigate("Home")
 
             const data = await response.json();
             if (data.token) {
                await SecureStore.setItemAsync("token", data.token);
-           setIsLoggedIn(true);
       }
-           } catch (error) {
-            ToastAndroid.show("Something Went Wrong",ToastAndroid.SHORT)
-           }
+           } catch (err) {
+            ToastAndroid.show("Invalid Email or Password",ToastAndroid.SHORT)
+            navigation.navigate("Login")
+            console.log(err.response.data)
+        }
         }
     })
 
